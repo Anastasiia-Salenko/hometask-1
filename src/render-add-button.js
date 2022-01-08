@@ -1,5 +1,5 @@
 const getHTMLMarkup = () => 
-  `<button>Create note</button>`;
+  `<button id="create">Create note</button>`;
 
 export const renderAddButton = () => {
   const element = document.createElement('div');
