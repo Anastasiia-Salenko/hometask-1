@@ -1,6 +1,10 @@
-import { createNewNote } from './create-new-note';
 import './main.css';
 
-console.log('I have a cat');
+import { prepopulatedNotes } from './prepopulated-notes';
+import { renderInitialNotes } from './render-initial-notes';
 
-createNewNote();
+function main() {
+  renderInitialNotes(prepopulatedNotes);
+}
+
+main();
