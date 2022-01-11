@@ -16,7 +16,6 @@ export const renderFilterButton = ({ showArchivedNotes, showActiveNotes }) => {
   
   element.addEventListener('click', (event) => {
 
-
     if (event.target.tagName === 'DIV') {
       return ;
     }

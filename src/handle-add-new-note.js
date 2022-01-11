@@ -1,4 +1,5 @@
 import { NOTE_CATEGORIES } from "./constants";
+import { v4 as uuidv4 } from 'uuid';
 
 const getNewRowHTMLMarkup = () =>  `
   <td><input /></td>
@@ -23,8 +24,9 @@ const getFilledRowHTMLMarkup = (note) => `
   <td>${new Date()}</td>
   <td>${note.dates}</td>
   <td>
-    <button>edit</button>
-    <button>remove</button>
+    <button id="archive">archive</button>
+    <button id="edit">edit</button>
+    <button id="remove">remove</button>
   </td>
 `;
 // new Date() 
@@ -37,7 +39,7 @@ const getFilledRowHTMLMarkup = (note) => `
 // 2022 March 8 # yyyy month number
 // \d{4} (January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}
 
-export const handleAddNewNote = () => {
+export const handleAddNewNote = ({ addNote }) => {
   document.querySelector('#create').addEventListener('click', () => {
     const tableElement = document.querySelector('table');
 
@@ -52,8 +54,11 @@ export const handleAddNewNote = () => {
       const content = newRowElement.querySelector('input').value;
       const category = newRowElement.querySelector('select').value;
       const dates = [...content.matchAll(regexpStandartDate)].map((item) => item[0]);
+      const note = { content, category, dates, id: uuidv4() };
 
-      newRowElement.innerHTML = getFilledRowHTMLMarkup({ content, category, dates });
+      newRowElement.innerHTML = getFilledRowHTMLMarkup(note);
+      newRowElement.id = `note-${note.id}`;
+      addNote(note);
     });
   });
 };

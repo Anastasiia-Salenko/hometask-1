@@ -21,14 +21,15 @@ const getHTMLMarkup = (notes) => `
     </tr>
     ${getEmptyPlaceholder(notes)}
     ${notes.map(item => `
-      <tr>
+      <tr id="note-${item.id}">
         <td>${item.content}</td>
         <td>${item.category}</td>
         <td>${item.created}</td>
         <td>${item.dates}</td>
         <td>
-          <button>edit</button>
-          <button>remove</button>
+          <button id="archive">archive</button>
+          <button id="edit">edit</button>
+          <button id="remove">remove</button>
         </td>
       </tr>
     `).join('')}
