@@ -1,4 +1,4 @@
-export const handleNoteButtons = ({ archiveNotes, unarchiveNotes }) => {
+export const handleNoteButtons = ({ archiveNotes, unarchiveNotes, removeNote }) => {
   const tableElemennt = document.querySelector('table');
   
   tableElemennt.parentElement.addEventListener('click', (event) => {
@@ -16,6 +16,12 @@ export const handleNoteButtons = ({ archiveNotes, unarchiveNotes }) => {
     if (event.target.id === 'unarchive') {
       const id = event.target.parentElement.parentElement.id.slice(5);
       unarchiveNotes(id);
+      event.target.parentElement.parentElement.remove();
+    }
+
+    if (event.target.id === 'remove') {
+      const id = event.target.parentElement.parentElement.id.slice(5);
+      removeNote(id);
       event.target.parentElement.parentElement.remove();
     }
   });

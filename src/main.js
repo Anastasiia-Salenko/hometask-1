@@ -50,12 +50,24 @@ function addNote(note) {
   renderStatisticTable(activeNotes, archivedNotes);
 };
 
+function removeNote(id) {
+  const notes = notesFilter === 'active'
+    ? activeNotes
+    : archivedNotes;
+
+  let neededNote = notes.find((item) => item.id === id);
+  const index = notes.indexOf(neededNote)
+  notes.splice(index, 1);
+
+  renderStatisticTable(activeNotes, archivedNotes)
+};
+
 function main() {
   renderFilterButton({ showArchivedNotes, showActiveNotes });
   showActiveNotes();
   renderAddButton();
   handleAddNewNote({ addNote });
-  handleNoteButtons({ archiveNotes, unarchiveNotes });
+  handleNoteButtons({ archiveNotes, unarchiveNotes, removeNote });
   renderStatisticTable(activeNotes, archivedNotes);
 };
 
