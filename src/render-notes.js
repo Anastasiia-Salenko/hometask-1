@@ -10,7 +10,7 @@ const getEmptyPlaceholder = (notes) => {
   `;
 }
 
-const getHTMLMarkup = (notes) => `
+const getHTMLMarkup = (notes, notesFilter) => `
   <table>
     <tr>
       <td>Content</td>
@@ -27,7 +27,14 @@ const getHTMLMarkup = (notes) => `
         <td>${item.created}</td>
         <td>${item.dates}</td>
         <td>
-          <button id="archive">archive</button>
+          ${notesFilter === 'active'
+            ? `
+            <button id="archive">archive</button>
+            ` 
+            : `
+            <button id="unarchive">restore</button>
+            `}
+          
           <button id="edit">edit</button>
           <button id="remove">remove</button>
         </td>
@@ -49,8 +56,8 @@ const getContentElement = () => {
   return element;
 }
 
-export const renderNotes = (notes) => {
+export const renderNotes = (notes, notesFilter) => {
   const element = getContentElement();
 
-  element.innerHTML = getHTMLMarkup(notes);
+  element.innerHTML = getHTMLMarkup(notes, notesFilter);
 }

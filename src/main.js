@@ -13,20 +13,27 @@ let notesFilter = 'active';
 
 function showArchivedNotes() {
   notesFilter = 'archived';
-  renderNotes(archivedNotes);
-}
+  renderNotes(archivedNotes, notesFilter);
+};
 
 function showActiveNotes() {
   notesFilter = 'active';
-  renderNotes(activeNotes);
-}
+  renderNotes(activeNotes, notesFilter);
+};
 
 function archiveNotes(id) {
   let neededNote = activeNotes.find((item) => item.id === id);
   const index = activeNotes.indexOf(neededNote)
   activeNotes.splice(index, 1);
   archivedNotes.push(neededNote);
-}
+};
+
+function unarchiveNotes(id) {
+  let neededNote = archivedNotes.find((item) => item.id === id);
+  const index = archivedNotes.indexOf(neededNote)
+  archivedNotes.splice(index, 1);
+  activeNotes.push(neededNote);
+};
 
 function addNote(note) {
   const notes = notesFilter === 'active'
@@ -34,14 +41,14 @@ function addNote(note) {
     : archivedNotes;
 
   notes.push(note);
-}
+};
 
 function main() {
   renderFilterButton({ showArchivedNotes, showActiveNotes });
   showActiveNotes();
   renderAddButton();
   handleAddNewNote({ addNote });
-  handleNoteButtons({ archiveNotes });
+  handleNoteButtons({ archiveNotes, unarchiveNotes });
 };
 
 main();
