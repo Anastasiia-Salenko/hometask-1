@@ -27,6 +27,7 @@ const getHTMLMarkup = (notes, notesFilter) => `
         <td>${item.created}</td>
         <td>${item.dates}</td>
         <td>
+          <button id="edit">edit</button>
           ${notesFilter === 'active'
             ? `
             <button id="archive">archive</button>
@@ -35,7 +36,6 @@ const getHTMLMarkup = (notes, notesFilter) => `
             <button id="unarchive">restore</button>
             `}
           
-          <button id="edit">edit</button>
           <button id="remove">remove</button>
         </td>
       </tr>

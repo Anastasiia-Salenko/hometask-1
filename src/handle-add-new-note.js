@@ -24,8 +24,8 @@ const getFilledRowHTMLMarkup = (note) => `
   <td>${new Date()}</td>
   <td>${note.dates}</td>
   <td>
-    <button id="archive">archive</button>
     <button id="edit">edit</button>
+    <button id="archive">archive</button>
     <button id="remove">remove</button>
   </td>
 `;
