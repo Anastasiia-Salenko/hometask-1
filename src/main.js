@@ -6,6 +6,7 @@ import { prepopulatedNotes } from './prepopulated-notes';
 import { renderAddButton } from './render-add-button';
 import { renderFilterButton } from './render-filters';
 import { renderNotes } from './render-notes';
+import { renderStatisticTable } from './render-statistic-table';
 
 const activeNotes = [...prepopulatedNotes];
 const archivedNotes = [];
@@ -26,6 +27,8 @@ function archiveNotes(id) {
   const index = activeNotes.indexOf(neededNote)
   activeNotes.splice(index, 1);
   archivedNotes.push(neededNote);
+
+  renderStatisticTable(activeNotes, archivedNotes);
 };
 
 function unarchiveNotes(id) {
@@ -33,6 +36,8 @@ function unarchiveNotes(id) {
   const index = archivedNotes.indexOf(neededNote)
   archivedNotes.splice(index, 1);
   activeNotes.push(neededNote);
+
+  renderStatisticTable(activeNotes, archivedNotes);
 };
 
 function addNote(note) {
@@ -41,6 +46,8 @@ function addNote(note) {
     : archivedNotes;
 
   notes.push(note);
+
+  renderStatisticTable(activeNotes, archivedNotes);
 };
 
 function main() {
@@ -49,6 +56,7 @@ function main() {
   renderAddButton();
   handleAddNewNote({ addNote });
   handleNoteButtons({ archiveNotes, unarchiveNotes });
+  renderStatisticTable(activeNotes, archivedNotes);
 };
 
 main();
