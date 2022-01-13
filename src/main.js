@@ -74,7 +74,7 @@ function editNote(id, updatedNote) {
   };
 
   renderStatisticTable(activeNotes, archivedNotes);
-}
+};
 
 function main() {
   renderFilterButton({ showArchivedNotes, showActiveNotes });

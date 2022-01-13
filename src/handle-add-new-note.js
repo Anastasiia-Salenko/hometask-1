@@ -15,8 +15,8 @@ const getNewRowHTMLMarkup = () =>  `
   <td></td>
   <td></td>
   <td>
-    <button>save</button>
-    <button>cancel</button>
+    <button id="save">save</button>
+    <button id="cancel">cancel</button>
   </td>
 `;
 
@@ -41,7 +41,11 @@ export const handleAddNewNote = ({ addNote }) => {
 
     tableElement.append(newRowElement);
 
-    newRowElement.querySelector('button').addEventListener('click', () => {
+    newRowElement.querySelector('#cancel').addEventListener('click', (event) => {
+      event.target.parentElement.parentElement.remove();
+    });
+
+    newRowElement.querySelector('#save').addEventListener('click', () => {
       const regexpStandartDate = /\d{2}\/\d{2}\/\d{4}/g;
 
       const content = newRowElement.querySelector('input').value;
@@ -57,4 +61,3 @@ export const handleAddNewNote = ({ addNote }) => {
     });
   });
 };
-

@@ -8,4 +8,4 @@ export const renderAddButton = () => {
   element.innerHTML = getHTMLMarkup();
 
   document.body.append(element);
-}
+};

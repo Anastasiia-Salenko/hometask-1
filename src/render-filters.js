@@ -32,4 +32,4 @@ export const renderFilterButton = ({ showArchivedNotes, showActiveNotes }) => {
       showActiveNotes();
     }
   })
-}
+};
