@@ -1,3 +1,6 @@
+import { format } from "date-fns";
+import { DATE_FORMAT } from './constants';
+
 const getEmptyPlaceholder = (notes) => {
   if (notes.length > 0) {
     return '';
@@ -24,8 +27,8 @@ const getHTMLMarkup = (notes, notesFilter) => `
       <tr id="note-${item.id}">
         <td>${item.content}</td>
         <td>${item.category}</td>
-        <td>${item.created}</td>
-        <td>${item.dates}</td>
+        <td>${format(item.created, DATE_FORMAT)}</td>
+        <td>${item.dates.map((item) => format(item, DATE_FORMAT))}</td>
         <td>
           <button id="edit">edit</button>
           ${notesFilter === 'active'
